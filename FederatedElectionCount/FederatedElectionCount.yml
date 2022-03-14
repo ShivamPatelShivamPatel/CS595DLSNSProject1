@@ -1,0 +1,373 @@
+# h1 h2 h3 h4 h5 b1 c1
+#       s1
+#    s3 s4 s5 (have bi check if from above broadcast below and if from below broadcast above)
+#h1 - mac: 02:00:00:ed:c5:5c
+#
+#h2 - mac: 02:00:00:a1:2b:9c
+#
+#h3 - mac: 02:00:00:55:43:4c
+#
+#h4 - mac: 02:00:00:25:3d:9f
+#
+#h5 - mac: 02:00:00:8b:18:df
+#
+#b1 - mac: 02:00:00:47:b8:66
+#
+#m1 - mac: 02:00:00:22:86:34
+#m2 - mac: 02:00:00:df:f4:0f
+#m3 - mac: 02:00:00:1a:c0:d5
+#s2:m1 mac: 02:00:00:c4:9c:da
+#s3:m2 mac: 02:00:00:b3:35:4e
+#s4:m3 mac: 02:00:00:19:ee:84
+#c1 - mac: 02:00:00:32:4c:a4
+#s1:h1 mac: 02:00:00:3d:79:66
+#s1:h2 mac: 02:00:00:41:56:68
+#s1:h3 mac: 02:00:00:b0:df:d3
+#s1:h4 mac: 02:00:00:05:53:78
+#s1:h5 mac: 02:00:00:06:d4:56
+#s1:b1 mac: 02:00:00:7a:6e:90
+#s1:c1 mac: 02:00:00:ac:d0:4e
+#s1:s2 mac: 02:00:00:56:2d:eb
+#s1:s3 mac: 02:00:00:b3:c1:77
+#s1:s4 mac: 02:00:00:bd:67:23
+#s2:s1 mac: 02:00:00:b0:91:b7
+#s3:s1 mac: 02:00:00:ab:39:5a
+#s4:s1 mac: 02:00:00:28:5e:ec
+hosts:
+    h1 :
+         interfaces:
+             - mac: '02:00:00:ed:c5:5c'
+               ip: 192.0.0.5/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from h1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i h1-eth1 -s 192.0.0.1 02:00:00:3d:79:66"
+               fg: True
+             - cmd: "sudo route add default h1-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i h1-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    h2 :
+         interfaces:
+             - mac: '02:00:00:a1:2b:9c'
+               ip: 192.0.0.6/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from h2'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i h2-eth1 -s 192.0.0.1 02:00:00:41:56:68" 
+               fg: True
+             - cmd: "sudo route add default h2-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i h2-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    h3 :
+         interfaces:
+             - mac: '02:00:00:55:43:4c'
+               ip: 192.0.0.7/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from h3'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i h3-eth1 -s 192.0.0.1 02:00:00:b0:df:d3"
+               fg: True
+             - cmd: "sudo route add default h3-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i h3-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    h4 :
+         interfaces:
+             - mac: '02:00:00:25:3d:9f'            
+               ip: 192.0.0.8/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from h4'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i h4-eth1 -s 192.0.0.1 02:00:00:05:53:78"
+               fg: True
+             - cmd: "sudo route add default h4-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i h4-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    h5 :
+         interfaces:
+             - mac: '02:00:00:8b:18:df'
+               ip: 192.0.0.9/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from h5'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i h5-eth1 -s 192.0.0.1 02:00:00:06:d4:56"
+               fg: True
+             - cmd: "sudo route add default h5-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i h5-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    b1 :
+         interfaces:
+             - mac: '02:00:00:47:b8:66'
+               ip: 192.0.0.10/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from b1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.1 02:00:00:7a:6e:90"
+               fg: True
+             - cmd: "sudo route add default b1-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.2 02:00:00:b0:91:b7"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.3 02:00:00:ab:39:5a"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.4 02:00:00:28:5e:ec"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.5 02:00:00:ed:c5:5c"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.6 02:00:00:a1:2b:9c"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.7 02:00:00:55:43:4c"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.8 02:00:00:25:3d:9f"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.9 02:00:00:8b:18:df"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.11 02:00:00:32:c4:4a"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.12 02:00:00:22:86:34"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.13 02:00:00:df:f4:0f"
+               fg: True
+             - cmd: "sudo arp -v -i b1-eth1 -s 192.0.0.14 02:00:00:1a:c0:d5"
+               fg: True
+    c1 :
+         interfaces:
+             - mac: '02:00:00:32:c4:4a'
+               ip: 192.0.0.11/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from c1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i c1-eth1 -s 192.0.0.1 02:00:00:ac:d0:4e"
+               fg: True
+             - cmd: "sudo route add default c1-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i c1-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    m1 :
+         interfaces:
+             - mac: '02:00:00:22:86:34'
+               ip: 192.0.0.12/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from c1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i m1-eth1 -s 192.0.0.2 02:00:00:c4:9c:da"
+               fg: True
+             - cmd: "sudo route add default m1-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i m1-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    m2 :
+         interfaces:
+             - mac: '02:00:00:df:f4:0f'
+               ip: 192.0.0.13/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from c1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i m2-eth1 -s 192.0.0.3 02:00:00:b3:35:4e"
+               fg: True
+             - cmd: "sudo route add default m2-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i m2-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+    m3 :
+         interfaces:
+             - mac: '02:00:00:1a:c0:d5'
+               ip: 192.0.0.14/24
+               port: 1
+         programs:
+             - cmd: "echo 'Hello from c1'"
+               fg: True
+             # e0
+             - cmd: "sudo arp -v -i m3-eth1 -s 192.0.0.4 02:00:00:19:ee:84" 
+               fg: True
+             - cmd: "sudo route add default m3-eth1"
+               fg: True
+             - cmd: "sudo arp -v -i m3-eth1 -s 192.0.0.10 02:00:00:47:b8:66"
+               fg: True
+switches:
+   s1 :
+         cfg: ../../build/BMv2/networks/FederatedElectionCount/coordinator.json
+         interfaces:
+             - link: h1
+               # ip: 192.0.0.1
+               mac: '02:00:00:3d:79:66'
+               port: 1
+
+             - link: h2
+               # ip: 192.0.0.1
+               mac: '02:00:00:41:56:68'     
+               port: 2
+
+             - link: h3
+               # ip: 192.0.0.1
+               mac: '02:00:00:b0:df:d3'
+               port: 3
+
+             - link: h4
+               # ip: 192.0.0.1
+               mac: '02:00:00:05:53:78'
+               port: 4
+
+             - link: h5
+               # ip: 192.0.0.1
+               mac: '02:00:00:06:d4:56'
+               port: 5
+
+             - link: b1
+               # ip: 192.0.0.1
+               mac: '02:00:00:7a:6e:90'
+               port: 6
+
+             - link: c1
+               # ip: 192.0.0.1
+               mac: '02:00:00:ac:d0:4e'
+               port: 7
+
+             - link: s2
+               # ip: 192.0.0.1
+               mac: '02:00:00:56:2d:eb'
+               port: 8
+
+             - link: s3
+               # ip: 192.0.0.1
+               mac: '02:00:00:b3:c1:77'
+               port: 9
+
+             - link: s4
+               # ip: 192.0.0.1
+               mac: '02:00:00:bd:67:23'
+               port: 10
+         cmds:
+             # Switching
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:b0:91:b7 => 8
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:22:86:34 => 8
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:ab:39:5a => 9
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:df:f4:0f => 9
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:28:5e:ec => 10
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:1a:c0:d5 => 10
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:ed:c5:5c => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:a1:2b:9c => 2
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:55:43:4c => 3
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:25:3d:9f => 4
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:8b:18:df => 5
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:47:b8:66 => 6
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:32:c4:4a => 7
+             # ARP
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.2 => 02:00:00:b0:91:b7
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.3 => 02:00:00:ab:39:5a
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.4 => 02:00:00:28:5e:ec
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.5 => 02:00:00:ed:c5:5c
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.6 => 02:00:00:a1:2b:9c
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.7 => 02:00:00:55:43:4c
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.8 => 02:00:00:25:3d:9f
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.9 => 02:00:00:8b:18:df
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.10 => 02:00:00:47:b8:66
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.11 => 02:00:00:32:c4:4a
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.12 => 02:00:00:22:86:34
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.13 => 02:00:00:df:f4:0f
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.14 => 02:00:00:1a:c0:d5
+             # Routing
+             - table_add ipv4_forwarding ipv4_forward 0xC0000002&&&0xFFFFFFFF => 192.0.0.2 8 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000003&&&0xFFFFFFFF => 192.0.0.3 9 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000004&&&0xFFFFFFFF => 192.0.0.4 10 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000005&&&0xFFFFFFFF => 192.0.0.5 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000006&&&0xFFFFFFFF => 192.0.0.6 2 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000007&&&0xFFFFFFFF => 192.0.0.7 3 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000008&&&0xFFFFFFFF => 192.0.0.8 4 0
+             - table_add ipv4_forwarding ipv4_forward 0xC0000009&&&0xFFFFFFFF => 192.0.0.9 5 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000A&&&0xFFFFFFFF => 192.0.0.10 6 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000B&&&0xFFFFFFFF => 192.0.0.11 7 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000C&&&0xFFFFFFFF => 192.0.0.12 8 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000D&&&0xFFFFFFFF => 192.0.0.13 9 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000E&&&0xFFFFFFFF => 192.0.0.14 10 0
+   s2 :
+         cfg: ../../build/BMv2/networks/FederatedElectionCount/legislature.json
+         interfaces:
+             - link: s1
+               mac: '02:00:00:b0:91:b7'
+               # ip: 192.0.0.2
+               port: 1
+             - link: m1
+               mac: '02:00:00:c4:9c:da'
+               port: 2
+         cmds:
+             # Switching
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:d8:c2:6b => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:47:b8:66 => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:22:86:34 => 2 
+             # ARP 
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.2 => 02:00:00:d8:c2:6b
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.10 => 02:00:00:47:b8:66
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.12 => 02:00:00:22:86:34
+             # Routing
+             - table_add ipv4_forwarding ipv4_forward 0xC0000002&&&0xFFFFFFFF => 192.0.0.2 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000A&&&0xFFFFFFFF => 192.0.0.10 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000C&&&0xFFFFFFFF => 192.0.0.12 2 0
+   s3 :
+         cfg: ../../build/BMv2/networks/FederatedElectionCount/legislature.json
+         interfaces:
+             - link: s1
+               mac: '02:00:00:ab:39:5a'
+               # ip: 192.0.0.3
+               port: 1
+             - link: m2
+               mac: '02:00:00:b3:35:4e'
+               port: 2
+         cmds:
+             # Switching
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:d8:c2:6b => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:47:b8:66 => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:df:f4:0f => 2
+             # ARP 
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.2 => 02:00:00:d8:c2:6b
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.10 => 02:00:00:47:b8:66
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.13 => 02:00:00:df:f4:0f
+             # Routing a 10, b 11, c 12, d 13, e 14, f 15
+             - table_add ipv4_forwarding ipv4_forward 0xC0000002&&&0xFFFFFFFF => 192.0.0.2 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000A&&&0xFFFFFFFF => 192.0.0.10 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000D&&&0xFFFFFFFF => 192.0.0.13 2 0
+   s4 :
+         cfg: ../../build/BMv2/networks/FederatedElectionCount/legislature.json
+         interfaces:
+             - link: s1
+               mac: '02:00:00:28:5e:ec'
+               # ip: 192.0.0.4
+               port: 1
+             - link: m3
+               mac: '02:00:00:19:ee:84'
+               port: 2
+         cmds:
+             # Switching
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:d8:c2:6b => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:47:b8:66 => 1
+             - table_add mac_forwarding mac_forward_set_egress 02:00:00:1a:c0:d5 => 2
+             # ARP 
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.2 => 02:00:00:d8:c2:6b
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.10 => 02:00:00:47:b8:66
+             - table_add next_hop_arp_lookup arp_lookup_set_addresses 192.0.0.14 => 02:00:00:1a:c0:d5
+             # Routing
+             - table_add ipv4_forwarding ipv4_forward 0xC0000002&&&0xFFFFFFFF => 192.0.0.2 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000A&&&0xFFFFFFFF => 192.0.0.10 1 0
+             - table_add ipv4_forwarding ipv4_forward 0xC000000E&&&0xFFFFFFFF => 192.0.0.14 2 0
