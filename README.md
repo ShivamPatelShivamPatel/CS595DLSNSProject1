@@ -1,5 +1,6 @@
 # Shivam Patel
 ## Federated Election Count
+### Federated Election Count Protocol (FEC Protocol) is a fault tolerant election counting network protocol that runs ontop of the transport layer, It works by having the hosts dump FEC packets onto the network that encode votes of the network portion they govern, the networking hardware then assists in counting and removing of duplicates.  The end result is, that all of the hosts(who them selves were the representatives of other hosts) come to consensus about the outcome of an election without having to have directly communicated with one another
 
 To Run please complete the following steps.
 (1). In Hangar, extract the FederatedElectionCount.zip file.
